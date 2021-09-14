@@ -1,0 +1,29 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+}
+
+html {
+  display: flex;
+}
+
+body {
+  align-self:center;
+}
+
+.s7p-bg-img {
+  background-image: url('../images/transparent_logo.png'), linear-gradient(to right bottom, rgba(254,198,234,0.46), rgba(255,255,255,0.46)), url('../images/bg.png');
+  background-position: center, center, center;
+  background-size: auto 80%, contain, cover;
+  background-repeat: no-repeat ;
+}
+
+.s7p-bg-paper {
+  background-image: url('../images/paper-bg.png');
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+}
