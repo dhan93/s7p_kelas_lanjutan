@@ -47,34 +47,33 @@ class RegistrationController extends Controller
               }
       if ($resultJson->score >= 0.3) {
               //Validation was successful, add your form submission logic here
-              return back()->with('message', 'Thanks for your message!');
+              // return back()->with('message', 'Thanks for your message!');
+              $rules = [
+                'phone' => 'required|numeric|exists:users,phone',
+              ];
+
+              $errorMessage = [
+                'required' => 'Kolom :attribute harus diisi.',
+                'exists' => ':attribute yang kamu masukkan tidak terdaftar, silakan coba lagi.',
+                'numeric' => 'Kolom :attribute harus berupa angka',
+              ];
+
+              $attributes = [
+                'phone' => 'No. WhatsApp',
+              ];
+
+              $validated = Validator::make($request->all(), $rules, $errorMessage, $attributes)->validate();
+
+              $user = User::where('phone', '=', $request->phone)
+                ->first();
+                
+              if ($user) {
+                return view('registerForm', compact('user'));
+              }
+              return back()->with('error', 'Nomor yang kamu masukkan tidak terdaftar, silakan coba lagi.');
       } else {
-              return back()->withErrors(['captcha' => 'ReCaptcha Error']);
+             return back()->withErrors(['captcha' => 'ReCaptcha Error']);
       }
-      
-      $rules = [
-        'phone' => 'required|numeric|exists:users,phone',
-      ];
-
-      $errorMessage = [
-        'required' => 'Kolom :attribute harus diisi.',
-        'exists' => ':attribute yang kamu masukkan tidak terdaftar, silakan coba lagi.',
-        'numeric' => 'Kolom :attribute harus berupa angka',
-      ];
-
-      $attributes = [
-        'phone' => 'No. WhatsApp',
-      ];
-
-      $validated = Validator::make($request->all(), $rules, $errorMessage, $attributes)->validate();
-
-      $user = User::where('phone', '=', $request->phone)
-        ->first();
-        
-      if ($user) {
-        return view('registerForm', compact('user'));
-      }
-      return back()->with('error', 'Nomor yang kamu masukkan tidak terdaftar, silakan coba lagi.');
     }
 
     /**
