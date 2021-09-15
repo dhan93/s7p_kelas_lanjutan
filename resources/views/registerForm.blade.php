@@ -14,7 +14,7 @@
   @endif
   <div>
     <h1 class="mb-4 text-2xl font-bold text-center">Registrasi Kelas Shirah Shahabiyah</h1>
-    <a href="" class="inline-block px-2 py-1 mb-2 -mt-2 font-sans text-sm font-semibold text-pink-500 border border-pink-500 rounded-md">< kembali</a>
+    <a href="{{route('registration.create')}}" class="inline-block px-2 py-1 mb-2 -mt-2 font-sans text-sm font-semibold text-pink-500 border border-pink-500 rounded-md">< kembali</a>
     <form action="" method="POST" class="">
       @csrf
       <div class="w-full text-center">
