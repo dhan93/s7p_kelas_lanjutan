@@ -42,6 +42,11 @@ class RegistrationController extends Controller
       $context = stream_context_create($options);
               $result = file_get_contents($url, false, $context);
               $resultJson = json_decode($result);
+
+      // disable captcha
+      $resultJson->success = true;
+      $resultJson->score = 1;
+
       if ($resultJson->success != true) {
               return back()->withErrors(['captcha' => 'ReCaptcha Error']);
               }

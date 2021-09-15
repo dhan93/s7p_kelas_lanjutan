@@ -42,7 +42,7 @@
 @endsection
 
 @section('js-bottom')
-  <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.sitekey') }}"></script>
+  {{-- <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.sitekey') }}"></script>
   <script>
           grecaptcha.ready(function() {
               grecaptcha.execute('{{ config('services.recaptcha.sitekey') }}', {action: 'findID'}).then(function(token) {
@@ -51,5 +51,5 @@
                   }
               });
           });
-  </script>
+  </script> --}}
 @endsection
