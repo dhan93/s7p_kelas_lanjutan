@@ -1,3 +1,48 @@
+@php
+    $faq = [
+      [
+        "q"=>"Apa itu Kelas Shirah Shahabiyah?",
+        "a"=>"Kelas Shirah Shahabiyah ini merupakan kelas istimewa yang diselenggarakan secara online oleh Sekolah 7 Perempuan yang mempelajari tentang Shirah Shahabiyah."
+      ],
+      [
+        "q"=>"Siapa saja kah yang bisa mengikuti Kelas Shirah Shahabiyah?",
+        "a"=>"Seluruh Alumni Sekolah 7 Perempuan Season 1, 2, dan 3."
+      ],
+      [
+        "q"=>"Apakah tujuan utama dari Kelas Shirah Shahabiyah?",
+        "a"=>"Membentuk pribadi perempuan yang dirindukan syurga dengan menjadikan shahabiyah sebagai teladan."
+      ],
+      [
+        "q"=>"Mengapa kita harus mempelajari Shirah Shahabiyah?",
+        "a"=>"Semua perempuan punya banyak amanah peran. Begitu pun dengan para shahabiyah, tak bisa lepas dari multiperan yang merupakan amanah Allah SWT. Walaupun beliau mempunyai peran yang sangat dominan (bahkan terkenal), namun peran - peran lainnya pun dijalankan dengan sangat baik.<br><br>Shahabiyah merupakan teladan perempuan yang perlu kita resapi kisahnya. Mulai peran sebagai hamba hingga kontribusinya unuk umat. Dari beliau kita sebagai perempuan dapat belajar berbagai macam kondisi, keadaan dan juga perjuangan yang luar biasa. Semoga dengan mempelajari shihah shahabiyah, perempuan bisa menjadi sosok yang dinantikan syurga seperti para shahabiyah."
+      ],
+      [
+        "q"=>"Apa Saja materi yang dibahas dalam Kelas Shirah Shahabiyah?",
+        "a"=>"<ol class='list-decimal list-inside'><li>Siapakah Shahabiyah itu?</li><li>Mengenal Keluarga Terdekat Rasul</li><li>Mengenal Sosok Istri Rasul Lainnya</li><li>Mengenal Sosok Shahabiyah Lain Yang Berprestasi</li></ol>"
+      ],
+      [
+        "q"=>"Siapa pembicara dalam Kelas Shirah Shahabiyah?",
+        "a"=>"Ustadzah Meri"
+      ],
+      [
+        "q"=>"Bagaimana teknis pembelajaran Kelas Shirah Shahabiyah?",
+        "a"=>"Pembelajaran di Kelas Shirah Shahabiyah dilaksanakan secara online melalui live zoom dan live youtube."
+      ],
+      [
+        "q"=>"Kapan penyelenggaraan Kelas Shirah Shahabiyah?",
+        "a"=>"Bulan September 2021, 4 kali pertemuan dalam 2 pekan."
+      ],
+      [
+        "q"=>"Kapan saja jadwal Kelas Shirah Shahabiyah?",
+        "a"=>"<ul class='list-disc list-inside'><li>Tanggal 25 September 2021 pukul 13.30 WIB</li><li>Tanggal 26 September 2021 pukul 13.30 WIB</li><li>Tanggal 2 Oktober 2021 pukul 13.30 WIB</li><li>Tanggal 3 Oktober 2021 pukul 13.30 WIB</li></ul>"
+      ],
+      [
+        "q"=>"Berapa biaya pendaftaran untuk mengikuti Kelas Shirah Shahabiyah?",
+        "a"=>"Kelas ini dapat diikuti dengan memberikan infaq terbaik, berapapun nominalnya. Untuk alumni yang pernah berhasil lulus dalam Sekolah 7 Perempuan, dapat mengikuti kelas ini secara gratis sebagai apresiasi dari Sekolah 7 Perempuan."
+      ],
+    ]
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -13,8 +58,9 @@
       {{-- Scripts --}}
       <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="flex flex-col overflow-x-hidden font-serif antialiased text-gray-700 s7p-bg-img">
-      <div class="fixed top-0 z-20 grid w-full grid-cols-2 p-2 text-pink-400" style="background: rgba(251, 207, 232, 0.7)">
+    <body class="flex flex-col overflow-x-hidden font-serif text-gray-700 s7p-bg-img">
+      {{-- navigation --}}
+      <nav class="fixed top-0 z-20 grid w-full grid-cols-2 p-2 text-pink-400" style="background: rgba(251, 207, 232, 0.7)">
         <div class="w-full">
           <img src="{{asset('images/logo_7perempuan_300.png')}}" alt="7 perempuan" class="w-auto h-10">
         </div>
@@ -22,11 +68,15 @@
           <a href="#daftar" class="p-2 mr-2 hover:text-pink-300">Daftar</a>
           <a href="#faq" class="p-2 hover:text-pink-300">F.A.Q.</a>
         </div>
-      </div>
+      </nav>
+
+      {{-- hero --}}
       <div class="relative flex items-center w-screen h-screen">
         <img src="{{asset('images/pemateri1.png')}}" alt="Kelas Shirah Shahabiyah bersama Ustadzah Meri" class="w-10/12 h-auto mx-auto sm:w-2/3 md:w-auto md:h-2/3">
       </div>
-      <div id="daftar" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 mx-auto text-center md:w-1/2">
+
+      {{-- Welcome --}}
+      <div id="daftar" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 pt-16 mx-auto text-center md:w-1/2">
         <div class="p-4 bg-white shadow-md rounded-xl">
           <h1 class="text-2xl font-bold">Selamat Datang...!</h1>
           <p>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
@@ -48,6 +98,20 @@
           <a href="{{route('registration.index')}}" class="inline-block px-4 py-1 mt-4 text-white bg-pink-500 rounded-md">Daftar Sekarang</a>
         </div>
       </div>
+
+      {{-- FAQ --}}
+      <div id="faq" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 pt-20 mx-auto text-center md:w-1/2">
+        <div class="p-4 bg-white shadow-md rounded-xl">
+          <h1 class="mb-2 text-2xl font-bold"><i>Frequently Asked Question</i></h1>
+          @foreach ($faq as $item)
+            <button class="mt-2 accordion">{{$item['q']}}</button>
+            <div class="text-left border panel">
+              {!!$item['a']!!}
+            </div>
+          @endforeach
+        </div>
+      </div>
+
       <div class="fixed bottom-0 hidden w-full grid-cols-2 lg:grid">
         <div>
           <img src="{{asset('images/cactus_left.png')}}" alt="" class="">
