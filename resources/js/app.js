@@ -2,6 +2,12 @@ require('./bootstrap');
 
 // require('alpinejs');
 
+// responsive menu
+// function expander(id) {
+//   let target = document.getElementById[id];
+//   target.classList.toggle("hidden");
+// }
+
 // accordion
 var acc = document.getElementsByClassName("accordion");
 var i;
@@ -13,7 +19,7 @@ for (i = 0; i < acc.length; i++) {
     this.classList.toggle("active");
 
     /* Toggle between hiding and showing the active panel */
-    var panel = this.nextElementSibling;
+    let panel = this.nextElementSibling;
     if (panel.style.display === "block") {
       panel.style.display = "none";
     } else {

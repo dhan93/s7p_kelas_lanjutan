@@ -60,15 +60,7 @@
     </head>
     <body class="flex flex-col overflow-x-hidden font-serif text-gray-700 s7p-bg-img">
       {{-- navigation --}}
-      <nav class="fixed top-0 z-20 grid w-full grid-cols-2 p-2 text-pink-400" style="background: rgba(251, 207, 232, 0.7)">
-        <div class="w-full">
-          <img src="{{asset('images/logo_7perempuan_300.png')}}" alt="7 perempuan" class="w-auto h-10">
-        </div>
-        <div class="w-full mt-2 font-semibold text-right">
-          <a href="#daftar" class="p-2 mr-2 hover:text-pink-300">Daftar</a>
-          <a href="#faq" class="p-2 hover:text-pink-300">F.A.Q.</a>
-        </div>
-      </nav>
+      @include('layouts.topnav')
 
       {{-- hero --}}
       <div class="relative flex items-center w-screen h-screen">
@@ -76,7 +68,7 @@
       </div>
 
       {{-- Welcome --}}
-      <div id="daftar" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 pt-16 mx-auto text-center md:w-1/2">
+      <div id="daftar" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 pt-16 mx-auto text-center md:w-2/3 xl:w-1/2">
         <div class="p-4 bg-white shadow-md rounded-xl">
           <h1 class="text-2xl font-bold">Selamat Datang...!</h1>
           <p>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
@@ -100,7 +92,7 @@
       </div>
 
       {{-- FAQ --}}
-      <div id="faq" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 pt-20 mx-auto text-center md:w-1/2">
+      <div id="faq" class="relative z-10 flex flex-row items-center w-full min-h-screen p-2 pt-20 mx-auto text-center md:w-2/3 xl:w-1/2">
         <div class="p-4 bg-white shadow-md rounded-xl">
           <h1 class="mb-2 text-2xl font-bold"><i>Frequently Asked Question</i></h1>
           @foreach ($faq as $item)

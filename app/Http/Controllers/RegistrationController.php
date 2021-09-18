@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Registration;
 
 class RegistrationController extends Controller
 {
@@ -119,7 +120,19 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+      // return $id;
+      $user = User::find($id);
+      // return $user;
+      $status = 'registering';
+      if ($user->get_Free) {
+        $status = 'registered';
+      }
+      $updated = User::where('id','=', $id)
+        ->update([
+          'registration_status' => $status
+        ]);
+      return redirect(route('status').'/?id='.$user->phone);
     }
 
     /**
@@ -131,5 +144,88 @@ class RegistrationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function confirmationIndex(Request $request)
+    {
+      if($request->query('id')){
+        $id = $request->query('id');
+        $userData = User::where('phone', '=', $id)
+          ->first();
+        if (!$userData) {
+          return redirect(route('confirmation.index'))->with('error', 'Nomor id tidak valid.');
+        }
+        return view('confirmationIndex', compact('userData'));
+      } else {
+        // return $request;
+        return view('confirmationIndex');
+      };
+    }
+
+    public function confirmationUpdate(Request $request)
+    {
+      // return $request;
+      $rules = [
+        // phone
+        'phone' => 'required|numeric|exists:users,phone',
+        // nominal
+        'nominal' => 'required|numeric',
+        // file
+        'image' => 'required|file|mimetypes:image/png,image/jpeg|max:2048',
+        // id
+        'id' => 'required|exists:users,id'
+      ];
+
+      $errorMessage = [
+        'required' => 'Kolom :attribute harus diisi.',
+        'numeric' => 'Kolom :attribute berisi angka.',
+        'file' => 'File :attribute belum terupload',
+        'mimetypes' => 'Format file :attribute tidak sesuai',
+        'exists' => 'Kolom :attribute tidak valid',
+        'max' => 'File :attribute tidak boleh melebihi :max KB',
+      ];
+
+      $attributes = [
+        'phone' => 'Nomor WhatsApp',
+        'nominal' => 'Nominal Transfer',
+        'image' => 'Bukti Transfer',
+        'id' => 'Nomor WhatsApp'
+      ];
+
+      $validated = Validator::make($request->all(), $rules, $errorMessage, $attributes)->validate();
+
+      $file_path = $request->file('image')->store('public/uploads/confirmations');
+      
+      $updated = User::find($validated['id'])
+        ->update([
+          'registration_status' => 'waiting'
+        ]);
+      $uploaded = Registration::create([
+        'user_id' => $validated['id'],
+        'file_path' => $file_path,
+        'nominal' => $validated['nominal']
+      ]);
+
+      $userData = User::find($validated['id']);
+
+      if ($updated && $uploaded) {
+        return redirect(route('status').'/?id='.$userData->phone);
+      }
+    }
+
+    public function status(Request $request)
+    {
+      if($request->query('id')){
+        $id = $request->query('id');
+        $userData = User::where('phone', '=', $id)
+          ->first();
+        if (!$userData) {
+          return redirect(route('confirmation.index'))->with('error', 'Nomor id tidak valid.');
+        }
+        return view('status', compact('userData'));
+      } else {
+        // return $request;
+        return view('statusIndex');
+      };
     }
 }

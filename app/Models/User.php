@@ -23,7 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'get_free'
+        'get_free',
+        'registration_status'
     ];
 
     /**
@@ -44,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function registration()
+    {
+      return $this->hasOne(Registration::class);
+    }
 }
