@@ -19,16 +19,16 @@
       @csrf
       @method('PATCH')
       <div class="w-full text-center">
-        <p class="text-lg"><strong>Hai {{$user->name}}..! </strong></p>
+        <p class="text-lg"><strong>Hai Puan {{$user->name}}..! </strong></p>
         @if ($user->get_free)
-          <p>Karena kamu pernah lulus di Sekolah 7 Perempuan, sebagai rewardnya Kamu berhak untuk mengikuti kelas ini secara <strong>gratis</strong>.</p>
+          <p>Karena Puan pernah lulus di Sekolah 7 Perempuan, sebagai rewardnya Puan berhak untuk mengikuti kelas ini secara <strong>gratis</strong>.</p>
           <br>
-          <p>Silakan klik tombol Lanjut mendaftar jika Kamu berminat untuk mendaftar sekarang.</p>
+          <p>Silakan klik tombol Lanjut mendaftar jika Puan berminat untuk mendaftar sekarang.</p>
         @else
-          <p>Sebagai Alumni Sekolah 7 Perempuan, Kamu boleh mengikuti kelas ini dengan terlebih dahulu memberikan infaq terbaik kamu.</p>
-          <p class="mt-2">Insya Allah infaqmu akan bermanfaat untuk perjuangan dakwah Islam.</p>
+          <p>Sebagai Alumni Sekolah 7 Perempuan, Puan boleh mengikuti kelas ini dengan terlebih dahulu <strong>memberikan infaq terbaik</strong> Puan.</p>
+          <p class="mt-2">Insya Allah infaq Puan akan bermanfaat untuk perjuangan dakwah Islam.</p>
           <br>
-          <p>Silakan klik tombol Lanjut mendaftar jika Kamu berminat untuk mendaftar sekarang.</p>          
+          <p>Silakan klik tombol Lanjut mendaftar jika Puan berminat untuk mendaftar sekarang.</p>          
         @endif
       </div>
 

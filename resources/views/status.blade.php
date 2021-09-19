@@ -53,21 +53,22 @@
             @break
         @case('registering')
             <p>Saat ini status pendaftaran kamu adalah <span class="font-semibold text-blue-500">Menunggu Pembayaran infaq</span></p>
-            <p>Silakan terlebih dahulu membayarkan infaq terbaikmu ke rekening yang tercantum di bawah ini.</p>
+            <p>Silakan terlebih dahulu kirimkan infaq terbaikmu ke rekening yang tercantum di bawah ini.</p>
             <div class="p-3 mx-auto my-2 text-center border rounded-md">
-              <p><strong>Bank Central Asia (BCA)</strong></p>
-              <p class="font-sans">5725680241</p>
+              <p><strong>Bank Syariah Indonesia (BSI)</strong></p>
+              <p class="font-sans">1148965000</p>
               <p>a.n WELLY NURLIANA</p>
             </div>
             <p>Jika sudah melakukan pembayaran, silakan konfirmasi transfer dengan klik tombol di bawah.</p>
             <a href="{{route('confirmation.index').'/?id='.$userData->phone}}" class="inline-block px-4 py-1 mt-4 text-white bg-pink-500 rounded-md">Konfirmasi Infaq</a>
+            <p class="mt-4"><small>*Halaman ini bisa diakses kembali dari menu <strong>Status Pendaftaran</strong></small></p>
             @break
         @case('waiting')
-            <p>Saat ini status pendaftaran kamu adalah <span class="font-semibold text-blue-500">Dalam Proses Konfirmasi</span>.</p>
-            <p>Kami akan mengkonfirmasi pembayaranmu dalam waktu maksimal 2 x 24jam.</p>
+            <p>Saat ini status pendaftaran kamu adalah <span class="font-semibold text-blue-500">Dalam Proses Verifikasi</span>.</p>
+            <p>Kami akan memverifikasi pembayaranmu dalam waktu maksimal 2 x 24jam.</p>
             @break
         @case('registered')
-            <p>Selamat, saat ini status pendaftaran kamu adalah <span class="font-semibold text-green-500">Terdaftar</span>.</p>
+            <p>Selamat, saat ini kamu telah sukses <span class="font-semibold text-green-500">Terdaftar</span>.</p>
             <p>Informasi selanjutnya akan kami sampaikan via WhatsApp.</p>
             @break
         @case('canceled')

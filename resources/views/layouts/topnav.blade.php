@@ -16,6 +16,9 @@
       <li>
         <a href="{{route('welcome')}}#faq" class="p-2 hover:text-pink-300">F.A.Q.</a>
       </li>
+      <li>
+        <a href="https://wa.me/6285693935273" class="p-2" target="_blank">Bantuan</a>
+      </li>
     </ul>
   </div>  
 </nav>

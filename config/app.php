@@ -232,4 +232,6 @@ return [
 
     ],
 
+    'woonotif_token' => 'ddf55c4f852b423dad49d50e8d30e51b73e7804b272cbfb6',
+
 ];

@@ -9,6 +9,14 @@
         "a"=>"Seluruh Alumni Sekolah 7 Perempuan Season 1, 2, dan 3."
       ],
       [
+        "q"=>"Apa saja syarat untuk bisa mengikuti Kelas Shirah Shahabiyah?",
+        "a"=>"Untuk bisa mengikuti Kelas Shirah Shahabiyah, nomor kamu harus terlebih dahulu terdaftar di Sekolah 7 Perempuan sebagai bukti bahwa kamu adalah salah satu Alumni Sekolah 7 Perempuan."
+      ],
+      [
+        "q"=>"Bagaimana jika nomor lama saya yang terdaftar di Sekolah 7 Perempuan sudah tidak aktif?",
+        "a"=>"Silakan hubungi via WhatsApp ke nomor <a href='https://wa.me/6285693935273' class='font-sans underline'>0856-9393-5273</a> dengan melampirkan nama, nomor WhatsApp lama, dan nomor WhatsApp baru yang aktif."
+      ],
+      [
         "q"=>"Apakah tujuan utama dari Kelas Shirah Shahabiyah?",
         "a"=>"Membentuk pribadi perempuan yang dirindukan syurga dengan menjadikan shahabiyah sebagai teladan."
       ],

@@ -70,6 +70,9 @@ class RegistrationController extends Controller
                 ->first();
                 
               if ($user) {
+                if ($user->registration_status != 'non registrant') {
+                  return redirect(route('status').'/?id='.$user->phone);
+                }
                 return view('registerForm', compact('user'));
               }
               return back()->with('error', 'Nomor yang kamu masukkan tidak terdaftar, silakan coba lagi.');
@@ -120,18 +123,52 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-      // return $id;
       $user = User::find($id);
-      // return $user;
-      $status = 'registering';
-      if ($user->get_Free) {
-        $status = 'registered';
-      }
-      $updated = User::where('id','=', $id)
-        ->update([
-          'registration_status' => $status
+      if ($user->get_free) {
+        $updated = User::where('id','=', $id)
+          ->update([
+            'registration_status' => 'registered'
+          ]);
+        $message = __('woonotif.registered', ['name'=>$user->name, 'telegram'=>'http://bit.ly/shirahshahabiyah1']);
+          $message .= '\n\n';
+          $message .= __('woonotif.donate', ['link'=>'https://shirah.7perempuan.com/confirmation']);
+      } else {
+        $updated = User::where('id','=', $id)
+          ->update([
+            'registration_status' => 'registering'
         ]);
+        $message = __('woonotif.registering', ['name'=>$user->name, 'link'=>'https://shirah.7perempuan.com/confirmation/?id='.$user->phone]);
+      }
+
+      // send WhatsApp Message
+      $token = config('app.woonotif_token');
+      $data = array(
+        'phone_no' => '+'.$user->phone, 
+        'key' => $token, 
+        'message' => $message
+      );
+
+      $data_string = json_encode($data);
+
+      $ch = curl_init('http://send.woonotif.com/api/send_message');
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_VERBOSE, 0);
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+          'Content-Type: application/json',
+          'Content-Length: ' . strlen($data_string)
+          )
+      );
+      $result = curl_exec($ch);
+      
+      User::where('id','=', $id)
+          ->update([
+            'notif_status' => $result
+      ]);
+      
       return redirect(route('status').'/?id='.$user->phone);
     }
 
