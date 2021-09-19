@@ -190,7 +190,7 @@ class RegistrationController extends Controller
         $userData = User::where('phone', '=', $id)
           ->first();
         if (!$userData) {
-          return redirect(route('confirmation.index'))->with('error', 'Nomor id tidak valid.');
+          return redirect(route('confirmation.index'))->with('error', 'Nomor WhatsApp tidak ditemukan.');
         }
         return view('confirmationIndex', compact('userData'));
       } else {
@@ -201,7 +201,6 @@ class RegistrationController extends Controller
 
     public function confirmationUpdate(Request $request)
     {
-      // return $request;
       $rules = [
         // phone
         'phone' => 'required|numeric|exists:users,phone',
@@ -257,7 +256,7 @@ class RegistrationController extends Controller
         $userData = User::where('phone', '=', $id)
           ->first();
         if (!$userData) {
-          return redirect(route('confirmation.index'))->with('error', 'Nomor id tidak valid.');
+          return redirect(route('confirmation.index'))->with('error', 'Nomor WhatsApp tidak ditemukan.');
         }
         return view('status', compact('userData'));
       } else {

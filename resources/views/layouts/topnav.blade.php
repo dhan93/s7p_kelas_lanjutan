@@ -1,11 +1,11 @@
-<nav class="fixed top-0 z-20 grid w-full grid-cols-2 p-2 text-pink-400" style="background: rgba(251, 207, 232, 0.7)">
+<nav class="fixed top-0 z-20 grid w-full grid-cols-3 p-2 text-pink-400" style="background: rgba(251, 207, 232, 0.7)">
   <a class="block col-span-1" href="{{route('welcome')}}">
     <img src="{{asset('images/logo_7perempuan_300.png')}}" alt="7 perempuan" class="w-auto h-10">
   </a>
-  <div class="block col-span-1 text-right md:hidden">
+  <div class="block col-span-2 text-right md:hidden">
     <button id="menu_button" class="inline-block px-4 py-1 mx-4 font-sans font-semibold border border-pink-400 rounded-md " onclick="expander('menu_items')">Menu</button>
   </div>
-  <div id="menu_items" class="flex-col hidden col-span-2 p-2 mt-2 font-semibold rounded-md bg-red-50 md:bg-transparent md:p-0 md:text-right md:block md:col-span-1">
+  <div id="menu_items" class="flex-col hidden col-span-3 p-2 mt-2 font-semibold rounded-md bg-red-50 md:bg-transparent md:p-0 md:text-right md:block md:col-span-2">
     <ul class="flex flex-col md:flex-row md:justify-end">
       <li>
         <a href="{{route('welcome')}}#daftar" class="p-2 mr-2 hover:text-pink-300">Daftar</a>

@@ -21,6 +21,7 @@
         <div class="w-4/5 p-4 mx-auto mt-16 bg-white rounded-md">
             
             <main>
+                
                 @yield('main')
             </main>
         </div>
