@@ -73,7 +73,7 @@
             </form>
             @break
         @case('registering')
-            <p>Saat ini status pendaftaran kamu adalah <span class="font-semibold text-blue-500">Menunggu Pembayaran infaq</span></p>
+            <p>Saat ini status pendaftaran Puan adalah <span class="font-semibold text-blue-500">Menunggu Pembayaran infaq</span></p>
             <p>Silakan terlebih dahulu kirimkan infaq terbaikmu ke rekening yang tercantum di bawah ini.</p>
             <div class="p-3 mx-auto my-2 text-center border rounded-md">
               <p><strong>Bank Syariah Indonesia (BSI)</strong></p>
@@ -85,12 +85,24 @@
             <p class="mt-4"><small>*Halaman ini bisa diakses kembali dari menu <strong>Status Pendaftaran</strong></small></p>
             @break
         @case('waiting')
-            <p>Saat ini status pendaftaran kamu adalah <span class="font-semibold text-blue-500">Dalam Proses Verifikasi</span>.</p>
+            <p>Saat ini status pendaftaran Puan adalah <span class="font-semibold text-blue-500">Dalam Proses Verifikasi</span>.</p>
             <p>Kami akan memverifikasi pembayaranmu dalam waktu maksimal 2 x 24jam.</p>
             @break
         @case('registered')
-            <p>Selamat, saat ini kamu telah sukses <span class="font-semibold text-green-500">Terdaftar</span>.</p>
+            <p>Selamat, saat ini Puan telah sukses <span class="font-semibold text-green-500">Terdaftar</span>.</p>
             <p>Informasi selanjutnya akan kami sampaikan via WhatsApp.</p>
+            @if ($userData->get_free && !$userData->donor)
+              <br>
+              <p>Puan juga boleh menunjukkan infaq terbaik puan dengan melakukan transfer ke rekening</p>
+                <div class="p-3 mx-auto my-2 text-center border rounded-md">
+                  <p><strong>Bank Syariah Indonesia (BSI)</strong></p>
+                  <p class="font-sans">1148965000</p>
+                  <p>a.n WELLY NURLIANA</p>
+                </div>
+              <p>Konfirmasi transfer dapat dilakukan dengan klik tombol di bawah.</p>
+              <a href="{{route('confirmation.index').'/?id='.$userData->phone}}" class="inline-block px-4 py-1 mt-4 text-white bg-pink-500 rounded-md">Konfirmasi Infaq</a>
+              <p class="mt-4"><small>*Halaman ini bisa diakses kembali dari menu <strong>Status Pendaftaran</strong></small></p>
+            @endif
             @break
         @case('canceled')
             <p>Saat ini status pendaftaran kamu adalah <span class="font-semibold text-yellow-500">Dibatalkan</span>.</p>

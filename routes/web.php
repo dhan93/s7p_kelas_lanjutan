@@ -29,6 +29,7 @@ Route::get('/status', [App\Http\Controllers\RegistrationController::class, 'stat
 
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
   Route::get('/dashboard', [App\Http\Controllers\Admin\RegistrationController::class, 'index'])->name('dashboard');
+  Route::get('/user/{id}', [App\Http\Controllers\Admin\RegistrationController::class, 'showUser'])->name('user.show');
 });
 
 require __DIR__.'/auth.php';

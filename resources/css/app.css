@@ -75,3 +75,7 @@ input[type="text"]:disabled {
   color: rgb(236, 72, 153);
   font-weight: bolder;
 }
+
+table.stripped tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
