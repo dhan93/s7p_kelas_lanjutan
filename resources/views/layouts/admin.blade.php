@@ -24,9 +24,12 @@
     <body class="font-serif antialiased text-gray-700 s7p-bg-img">
         @include('layouts.adminnav')
         <div class="w-full p-4 mx-auto bg-white rounded-md">
-            
+            @if(session('success'))
+              <div class="p-2 text-center text-white bg-green-400 rounded-md">
+                {{ session('success') }}
+              </div>
+            @endif
             <main>
-                
                 @yield('main')
             </main>
         </div>

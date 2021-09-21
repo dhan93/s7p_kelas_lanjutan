@@ -60,7 +60,7 @@ class RegistrationController extends Controller
   {
     $id = $request->id;
     $user = User::find($id);
-    
+
     if (!$user->get_free) {
       $message = __('woonotif.registered', ['name'=>$user->name, 'telegram'=>'http://bit.ly/shirahshahabiyah1']);
     } else {
@@ -100,5 +100,7 @@ class RegistrationController extends Controller
         ->update([
           'notif_status' => $result
     ]);
+
+    return redirect(route('admin.dashboard'))->with('success', "Update tersimpan");
   }
 }

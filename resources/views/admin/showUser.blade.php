@@ -5,7 +5,7 @@
 @section('main')
   <h1 class="mt-2 mb-4 text-xl font-bold text-center">Detail</h1>
   <div class="grid grid-cols-2">
-    <div class="col-span-1">
+    <div class="col-span-2 lg:col-span-1">
       <table>
         <tr>
           <td class="px-2">Nama</td>
@@ -34,14 +34,18 @@
           </td>
         </tr>
       </table>
-      <div class="mt-4">
-        <form action="" method="post">
-          <input type="hidden" name="id" value="{{$user->id}}">
-          <button class="justify-center inline-block px-4 py-2 mx-auto text-sm text-white bg-pink-500 rounded-md">approve</button>
-        </form>
-      </div>
+      @if ($user->registration_status == 'waiting')
+        <div class="mt-4">
+          <form action="{{route('admin.user.update.status')}}" method="post">
+            @csrf
+            <input type="hidden" name="id" value="{{$user->id}}">
+            <button class="justify-center inline-block px-4 py-2 mx-auto text-sm text-white bg-pink-500 rounded-md">approve</button>
+          </form>
+        </div>          
+      @endif
     </div>
-    <div class="col-span-1">
+    
+    <div class="col-span-2 lg:col-span-1">
       <h3 class="text-lg font-semibold">Bukti Transfer</h3>
       @if ($user->registration)
         @php
