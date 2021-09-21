@@ -1,22 +1,41 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Pengelolaan Registrasi')
 
 @section('main')
-  <table>
+  <table class="w-full border-b stripped">
     <thead>
-      <th>
+      <tr class="border-b">
         {{-- nama --}}
-        <td>Nama</td>
+        <th>Nama</th>
         {{-- phone --}}
-        <td>No. WhatsApp</td>
+        <th>No. WhatsApp</th>
         {{-- get free --}}
-        <td>Peserta free</td>
+        <th>Peserta free</th>
+        {{-- status notif --}}
+        <th>Status Notif WA</th>
         {{-- bukti transfer --}}
-        <td>Bukti Transfer</td>
-        {{-- approval --}}
-        <td>approval</td>
-      </th>
+        <th>Detail</th>
+      </tr>
     </thead>
+    <tbody>
+    @foreach ($users as $user)
+      <tr>
+        <td class="p-1">{{$user->name}}</td>
+        <td class="p-1 text-center">{{$user->phone}}</td>
+        <td class="p-1 text-center">{!!$user->get_free? '<i class="mx-auto text-green-500 gg-check-o"></i>':'-' !!}</td>
+        <td class="p-1 text-center">{{$user->notif_status}}</td>
+        <td class="p-1 text-center">
+          <a href="{{route('admin.user.show', $user->id)}}" class="flex justify-center px-4 py-2 mx-auto text-sm text-white bg-pink-500 rounded-md">
+            <i class="mr-2 gg-eye"></i> <span class="">view</span>
+          </a>
+        </td>
+      </tr>
+    @endforeach
+    </tbody>
   </table>
+  <div class="mt-4">
+    {{ $users->links() }}
+  </div>
+  
 @endsection

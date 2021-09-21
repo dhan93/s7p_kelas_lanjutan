@@ -231,11 +231,22 @@ class RegistrationController extends Controller
       $validated = Validator::make($request->all(), $rules, $errorMessage, $attributes)->validate();
 
       $file_path = $request->file('image')->store('public/uploads/confirmations');
-      
-      $updated = User::find($validated['id'])
+
+      $user = User::find($validated['id']);
+
+      if ($user->get_free) {
+        $updated = User::find($validated['id'])
+        ->update([
+          'registration_status' => 'waiting',
+          'donor' => 1
+        ]);
+      } else {
+        $updated = User::find($validated['id'])
         ->update([
           'registration_status' => 'waiting'
         ]);
+      }
+      
       $uploaded = Registration::create([
         'user_id' => $validated['id'],
         'file_path' => $file_path,

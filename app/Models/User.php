@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'role_id',
         'get_free',
+        'donor',
         'registration_status'
     ];
 
