@@ -7,6 +7,7 @@ use App\Models\Registration;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Message;
 
 class RegistrationController extends Controller
 {
@@ -100,6 +101,15 @@ class RegistrationController extends Controller
         ->update([
           'notif_status' => $result
     ]);
+
+    Message::updateOrCreate(
+      ['user_id'=>$id],
+      [
+        'message'=>$message,
+        'resent'=>0,
+        'resent_by'=>null
+      ]
+    );
 
     return redirect(route('admin.dashboard'))->with('success', "Update tersimpan");
   }

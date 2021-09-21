@@ -27,6 +27,8 @@ Route::get('/status', [App\Http\Controllers\RegistrationController::class, 'stat
 // Route::resource('registration', App\Http\Controllers\RegistrationController::class);
 // Route::resource('admin', RegistrationController::class);
 
+Route::middleware(['auth'])->get('/dashboard', [App\Http\Controllers\Admin\RegistrationController::class, 'index'])->name('dashboard');
+
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
   Route::get('/dashboard', [App\Http\Controllers\Admin\RegistrationController::class, 'index'])->name('dashboard');
   Route::get('/user/{id}', [App\Http\Controllers\Admin\RegistrationController::class, 'showUser'])->name('user.show');
