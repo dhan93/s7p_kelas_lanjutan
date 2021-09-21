@@ -40,7 +40,7 @@
       @foreach ($users as $user)
         <tr>
           <td class="p-1">{{$user->name}}</td>
-          <td class="p-1 text-center">{{$user->phone}}</td>
+          <td class="p-1 font-sans text-center">{{$user->phone}}</td>
           <td class="p-1 text-center">{!!$user->get_free? '<i class="mx-auto text-green-500 gg-check-o"></i>':'-' !!}</td>
           <td class="p-1 text-center">{{$user->notif_status}}</td>
           <td class="p-1 text-center">
@@ -53,7 +53,7 @@
       </tbody>
     </table>
   </div>
-  <div class="mt-4">
+  <div class="mt-4 font-sans">
     {{ $users->links() }}
   </div>
   

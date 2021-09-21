@@ -16,7 +16,7 @@ class Message extends Model
       'resent_by',
     ];
 
-    public function users()
+    public function user()
     {
       return $this->hasOne(User::class);
     }

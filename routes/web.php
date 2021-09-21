@@ -33,6 +33,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
   Route::get('/dashboard', [App\Http\Controllers\Admin\RegistrationController::class, 'index'])->name('dashboard');
   Route::get('/user/{id}', [App\Http\Controllers\Admin\RegistrationController::class, 'showUser'])->name('user.show');
   Route::post('/user/update/status', [App\Http\Controllers\Admin\RegistrationController::class, 'statusUpdate'])->name('user.update.status');
+  Route::post('/user/update/resent', [App\Http\Controllers\Admin\RegistrationController::class, 'messageResent'])->name('message.resent');
 });
 
 require __DIR__.'/auth.php';

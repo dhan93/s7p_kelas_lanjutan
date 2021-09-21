@@ -21,6 +21,9 @@
         <a href="{{route('admin.dashboard')}}?status=waiting" class="p-2 md:mr-2 hover:text-pink-300">Perlu Verifikasi</a>
       </li>
       <li>
+        <a href="{{route('admin.dashboard')}}?status=unnotified" class="p-2 md:mr-2 hover:text-pink-300">Notif Bermasalah</a>
+      </li>
+      <li>
         <a href="{{route('admin.dashboard')}}?status=registering" class="p-2 md:mr-2 hover:text-pink-300">Menunggu Transfer</a>
       </li>
       <li>

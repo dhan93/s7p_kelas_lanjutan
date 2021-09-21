@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller
 {
@@ -18,26 +19,36 @@ class RegistrationController extends Controller
       $status = $request->query('status');
     }
     $allowed_status = [
-      'non registrant', 'registering', 'waiting', 'registered', 'all', 'canceled'
+      'non registrant', 'registering', 'waiting', 'registered', 'all', 'canceled', 'unnotified'
     ];
     // return $status;
     if (in_array($status, $allowed_status)) {
-      if ($status == 'registered') {
-        $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
-        ->where([['registration_status', '=', 'registered'],['role_id', '<', 2]])
-        ->orWhere('donor', '=', 1)
-        ->paginate(50)->appends($request->all());
-        // ->get();
-      } else {
-        $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
-        ->when($status != 'all', function ($query) use ($status) {
-          return $query->where('registration_status', '=', $status);
-        })
-        ->where('role_id', '<', 2)
-        ->paginate(50)->appends($request->all());
-        // ->get();
-      }
+      switch ($status) {
+        case 'registered':
+          $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
+            ->where([['registration_status', '=', 'registered'],['role_id', '<', 2]])
+            ->orWhere('donor', '=', 1)
+            ->paginate(50)->appends($request->all());
+            // ->get();
+          break;
         
+        case 'unnotified':
+          $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
+            ->whereNotIn('notif_status', ['success'])
+            ->paginate(50)->appends($request->all());
+          break;
+
+        default:
+        $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
+          ->when($status != 'all', function ($query) use ($status) {
+            return $query->where('registration_status', '=', $status);
+          })
+          ->where('role_id', '<', 2)
+          ->paginate(50)->appends($request->all());
+          // ->get();
+          break;
+      }
+
       // return $users->total();
       return view('admin.registrationManager', compact('users', 'status'));
     } else {
@@ -52,9 +63,15 @@ class RegistrationController extends Controller
         $query->orderBy('created_at', 'desc');
       }])
       ->find($id);
+    
+    $message = Message::where('user_id', '=', $id)
+      ->leftJoin('users', 'users.id', '=', 'messages.resent_by')
+      ->select('messages.*', 'users.id as sender_id', 'users.name as sender_name')
+      ->orderBy('messages.updated_at', 'desc')
+      ->first();
 
-      // return $user;
-    return view('admin.showUser', compact('user'));
+      // return $message;
+    return view('admin.showUser', compact('user', 'message'));
   }
 
 
@@ -113,5 +130,21 @@ class RegistrationController extends Controller
     );
 
     return redirect(route('admin.dashboard'))->with('success', "Update tersimpan");
+  }
+
+  public function messageResent(Request $request)
+  {
+    // return $request;
+    $user = User::find($request->id);
+    $user->notif_status = 'resent';
+    $user->save();
+
+    $message = Message::where('user_id', $request->id)
+    ->update([
+      'resent' => 1,
+      'resent_by' => Auth::id()
+    ]);
+
+    return redirect(route('admin.dashboard').'?status=unnotified');
   }
 }
