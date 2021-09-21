@@ -20,7 +20,7 @@
               @break              
       @endswitch
     </h1>
-    <p class="my-3 text-lg font-semibold">Jumlah Entri : <span class="font-sans">{{$users->total()}}</span></p>
+    <p class="my-3 text-lg font-semibold">Jumlah Entri : <span class="font-sans">{{$users->count()}}</span></p>
     <table class="w-full border-b stripped">
       <thead>
         <tr class="border-b">
@@ -53,8 +53,8 @@
       </tbody>
     </table>
   </div>
-  <div class="mt-4">
+  {{-- <div class="mt-4">
     {{ $users->links() }}
-  </div>
+  </div> --}}
   
 @endsection
