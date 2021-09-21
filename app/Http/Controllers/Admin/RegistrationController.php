@@ -24,18 +24,18 @@ class RegistrationController extends Controller
     if (in_array($status, $allowed_status)) {
       if ($status == 'registered') {
         $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
-        ->where('registration_status', '=', 'registered')
+        ->where([['registration_status', '=', 'registered'],['role_id', '<', 2]])
         ->orWhere('donor', '=', 1)
-        // ->paginate(50);
-        ->get();
+        ->paginate(50)->appends($request->all());
+        // ->get();
       } else {
         $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
         ->when($status != 'all', function ($query) use ($status) {
           return $query->where('registration_status', '=', $status);
         })
-        // ->where('role_id', '<', 2)
-        // ->paginate(50);
-        ->get();
+        ->where('role_id', '<', 2)
+        ->paginate(50)->appends($request->all());
+        // ->get();
       }
         
       // return $users->total();
