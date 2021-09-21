@@ -26,19 +26,20 @@ class RegistrationController extends Controller
         $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
         ->where('registration_status', '=', 'registered')
         ->orWhere('donor', '=', 1)
-        ->paginate(50);
+        // ->paginate(50);
+        ->get();
       } else {
         $users = User::select('name', 'phone', 'registration_status', 'id', 'get_free', 'notif_status')
         ->when($status != 'all', function ($query) use ($status) {
           return $query->where('registration_status', '=', $status);
         })
         // ->where('role_id', '<', 2)
-        ->paginate(50);
-        // ->get();
+        // ->paginate(50);
+        ->get();
       }
         
-      // return $users;
-      return view('admin.registrationManager', compact('users'));
+      // return $users->total();
+      return view('admin.registrationManager', compact('users', 'status'));
     } else {
       abort(404);      
     }

@@ -4,6 +4,23 @@
 
 @section('main')
   <div class="w-full overflow-x-auto">
+    <h1 class="block my-2 text-2xl font-black text-center ">
+      @switch($status)
+          @case('all')
+              Semua Alumni
+              @break
+          @case('registering')
+              Menunggu Transfer
+              @break
+          @case('waiting')
+              Perlu Verifikasi
+              @break
+          @case('registered')
+              Terdaftar
+              @break              
+      @endswitch
+    </h1>
+    <p class="my-3 text-lg font-semibold">Jumlah Entri : <span class="font-sans">{{$users->total()}}</span></p>
     <table class="w-full border-b stripped">
       <thead>
         <tr class="border-b">

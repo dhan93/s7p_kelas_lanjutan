@@ -46,8 +46,10 @@
     </div>
     
     <div class="col-span-2 lg:col-span-1">
-      <h3 class="text-lg font-semibold">Bukti Transfer</h3>
+      <h3 class="mb-2 text-lg font-semibold">Bukti Transfer</h3>
+      
       @if ($user->registration)
+        <p class="mb-2">Nominal Transfer : <input type="text" id="nominal" class="font-sans font-semibold" value="{{$user->registration->nominal}}" disabled></p>
         @php
           $image = str_replace("public", "storage", $user->registration->file_path)
         @endphp
@@ -58,4 +60,20 @@
     </div>
   </div>
   
+@endsection
+
+@section('js-bottom')
+  <script src="https://unpkg.com/vanilla-masker@1.1.1/build/vanilla-masker.min.js"></script>
+  <script>
+    VMasker(document.getElementById('nominal')).maskMoney({
+      // Decimal precision -> "90"
+      precision: 0,
+      // Decimal separator -> ",90"
+      separator: ',',
+      // Number delimiter -> "12.345.678"
+      delimiter: '.',
+      // Money unit -> "R$ 12.345.678,90"
+      unit: 'Rp'
+    });
+  </script>
 @endsection
