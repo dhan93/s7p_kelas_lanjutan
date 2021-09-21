@@ -5,13 +5,13 @@
 @section('main')
   <h1 class="mt-2 mb-4 text-xl font-bold text-center">Detail</h1>
   <div class="grid grid-cols-2">
-    <div class="col-span-2 lg:col-span-1">
-      <table>
-        <tr>
+    <div class="col-span-2 mb-4 overflow-x-auto lg:col-span-1 ">
+      <table class="min-w-min">
+        <tr class="mb-2">
           <td class="px-2">Nama</td>
           <td class="font-semibold">: {{$user->name}}</td>
         </tr>
-        <tr>
+        <tr class="mb-2">
           <td class="px-2">No. WhatsApp</td>
           <td class="font-semibold">
             : <a href="https://wa.me/{{$user->phone}}" class="font-sans underline">
@@ -19,15 +19,15 @@
             </a>
           </td>
         </tr>
-        <tr>
+        <tr class="mb-2">
           <td class="px-2">Status pendaftaran</td>
           <td class="font-semibold">: {{$user->registration_status}}</td>
         </tr>
-        <tr>
+        <tr class="mb-2">
           <td class="px-2">Status notifikasi WA</td>
           <td class="font-semibold">: {{$user->notif_status ?? '-'}}</td>
         </tr>
-        <tr>
+        <tr class="mb-2">
           <td class="px-2">Peserta free</td>
           <td class="font-semibold">
             : {!!$user->get_free? '<span class="text-green-500">ya</span>':'tidak'!!}

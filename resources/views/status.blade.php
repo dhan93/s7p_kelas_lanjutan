@@ -77,7 +77,7 @@
             <p>Silakan terlebih dahulu kirimkan infaq terbaikmu ke rekening yang tercantum di bawah ini.</p>
             <div class="p-3 mx-auto my-2 text-center border rounded-md">
               <p><strong>Bank Syariah Indonesia (BSI)</strong></p>
-              <p class="font-sans">1148965000</p>
+              <p class="font-sans">7145870067</p>
               <p>a.n WELLY NURLIANA</p>
             </div>
             <p>Jika sudah melakukan pembayaran, silakan konfirmasi transfer dengan klik tombol di bawah.</p>
@@ -96,7 +96,7 @@
               <p>Puan juga boleh menunjukkan infaq terbaik puan dengan melakukan transfer ke rekening</p>
                 <div class="p-3 mx-auto my-2 text-center border rounded-md">
                   <p><strong>Bank Syariah Indonesia (BSI)</strong></p>
-                  <p class="font-sans">1148965000</p>
+                  <p class="font-sans">7145870067</p>
                   <p>a.n WELLY NURLIANA</p>
                 </div>
               <p>Konfirmasi transfer dapat dilakukan dengan klik tombol di bawah.</p>
