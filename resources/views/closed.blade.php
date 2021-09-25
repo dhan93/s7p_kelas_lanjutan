@@ -20,7 +20,7 @@
       {{-- hero --}}
       <div class="relative flex flex-col items-center justify-center w-screen h-screen">
         <h1 class="text-3xl font-bold text-center text-pink-500">Pendaftaran<br>Kelas Shirah Shabiayah Season 1<br>sudah ditutup</h1>
-        <h2 class="text-xl font-semibold text-pink-400">Terimakasih atas antusiasme Puan-puan sekalian<br>dan nantikan Kelas Shirah Shahabiyah berikutnya</h2>
+        <h2 class="text-xl font-semibold text-center text-pink-400">Terimakasih atas antusiasme Puan-puan sekalian<br>dan nantikan Kelas Shirah Shahabiyah berikutnya</h2>
       </div>
 
       <div class="fixed bottom-0 hidden w-full grid-cols-2 lg:grid">
