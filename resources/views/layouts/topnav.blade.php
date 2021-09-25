@@ -7,7 +7,7 @@
   </div>
   <div id="menu_items" class="flex-col hidden col-span-3 p-2 mt-2 font-semibold rounded-md bg-red-50 md:bg-transparent md:p-0 md:text-right md:block md:col-span-2">
     <ul class="flex flex-col md:flex-row md:justify-end">
-      <li>
+      {{-- <li>
         <a href="{{route('welcome')}}#daftar" class="p-2 mr-2 hover:text-pink-300 menu-item">Daftar</a>
       </li>
       <li>
@@ -15,7 +15,7 @@
       </li>
       <li>
         <a href="{{route('welcome')}}#faq" class="p-2 hover:text-pink-300 menu-item">F.A.Q.</a>
-      </li>
+      </li> --}}
       <li>
         <a href="https://wa.me/6285693935273" class="p-2" target="_blank">Bantuan</a>
       </li>
