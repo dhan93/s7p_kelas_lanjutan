@@ -4,7 +4,7 @@
 
 @section('main')
   <div>
-    <h1 class="mb-4 text-2xl font-bold text-center">Registrasi Kelas Shirah Shahabiyah</h1>
+    <h1 class="mb-4 text-2xl font-bold text-center">Registrasi Kelas Lanjutan Sekolah 7 Perempuan</h1>
     
     {{-- @if(session('error'))
       <div class="flex p-4 mb-4 bg-red-100 rounded-lg">

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => "Kelas Shirah Shahabiyah S7P",
+    'name' => "Kelas Lanjutan S7P",
     // 'name' => env('APP_NAME', 'Laravel'),
 
     /*

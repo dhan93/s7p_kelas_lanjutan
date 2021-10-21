@@ -138,48 +138,51 @@ class RegistrationController extends Controller
           ->update([
             'registration_status' => 'registering'
         ]);
-        $message = __('woonotif.registering', ['name'=>$user->name, 'link'=>'https://shirah.7perempuan.com/confirmation/?id='.$user->phone]);
+        // $message = __('woonotif.registering', ['name'=>$user->name, 'link'=>'https://shirah.7perempuan.com/confirmation/?id='.$user->phone]);
       }
 
       // send WhatsApp Message
-      $token = config('app.woonotif_token');
-      $data = array(
-        'phone_no' => '+'.$user->phone, 
-        'key' => $token, 
-        'message' => $message
-      );
+      // $token = config('app.woonotif_token');
+      // $data = array(
+      //   'phone_no' => '+'.$user->phone, 
+      //   'key' => $token, 
+      //   'message' => $message
+      // );
 
-      $data_string = json_encode($data);
+      // $data_string = json_encode($data);
 
-      $ch = curl_init('http://send.woonotif.com/api/send_message');
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_VERBOSE, 0);
-      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
-      curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-          'Content-Type: application/json',
-          'Content-Length: ' . strlen($data_string)
-          )
-      );
-      $result = curl_exec($ch);
+      // $ch = curl_init('http://send.woonotif.com/api/send_message');
+      // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+      // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+      // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($ch, CURLOPT_VERBOSE, 0);
+      // curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+      // curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+      // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      //     'Content-Type: application/json',
+      //     'Content-Length: ' . strlen($data_string)
+      //     )
+      // );
+      // $result = curl_exec($ch);
       
-      User::where('id','=', $id)
-          ->update([
-            'notif_status' => $result
-      ]);
+      // User::where('id','=', $id)
+      //     ->update([
+      //       'notif_status' => $result
+      // ]);
 
-      Message::updateOrCreate(
-        ['user_id'=>$id],
-        [
-          'message'=>$message,
-          'resent'=>0,
-          'resent_by'=>null
-        ]
-      );
+      // Message::updateOrCreate(
+      //   ['user_id'=>$id],
+      //   [
+      //     'message'=>$message,
+      //     'resent'=>0,
+      //     'resent_by'=>null
+      //   ]
+      // );
       
-      return redirect(route('status').'/?id='.$user->phone);
+      // return redirect(route('status').'/?id='.$user->phone);
+      return redirect(
+        // oo link
+      );
     }
 
     /**

@@ -72,7 +72,7 @@
 
       {{-- hero --}}
       <div class="relative flex items-center w-screen h-screen">
-        <img src="{{asset('images/pemateri1.png')}}" alt="Kelas Shirah Shahabiyah bersama Ustadzah Meri" class="w-10/12 h-auto mx-auto sm:w-2/3 md:w-auto md:h-2/3">
+        <img src="{{asset('images/pemateri2.png')}}" alt="Kelas Lanjutan Sekolah 7 Perempuan" class="w-10/12 h-auto mx-auto sm:w-2/3 md:w-auto md:h-4/5">
       </div>
 
       {{-- Welcome --}}
