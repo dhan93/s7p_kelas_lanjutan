@@ -180,9 +180,7 @@ class RegistrationController extends Controller
       // );
       
       // return redirect(route('status').'/?id='.$user->phone);
-      return redirect(
-        // oo link
-      );
+      return redirect('https://mpstore.orderonline.id/kelasistritaatibuhebat');
     }
 
     /**
